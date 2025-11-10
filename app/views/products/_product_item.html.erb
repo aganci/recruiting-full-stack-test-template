@@ -1,0 +1,7 @@
+<div class="flex my-2 px-4 py-6 border-b border-gray-300">
+  <%= image_tag(image_path(product.image_url), alt: product.name, width: 128, height: 128, class: "h-[128px] w-[128px] aspect-square") %>
+  <div class="ml-5 p-3 border-l border-gray-300">
+    <div class="font-bold text-xl"><%= product.name %></div>
+    <div class="italic text-sm"><%= number_to_currency(product.selling_price) %></div>
+  </div>
+</div>
