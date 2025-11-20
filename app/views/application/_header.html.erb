@@ -1,3 +1,20 @@
 <div class="px-10 py-5 w-full sticky top-0 bg-purple-400 text-white text-2xl">
-  🍭 Candy Shop
+  <div class="flex items-center justify-between">
+    <%= link_to root_path, class: "hover:opacity-80 transition" do %>
+      🍭 Candy Shop
+    <% end %>
+
+    <div class="relative" style="width: 32px; height: 32px;">
+      <%= link_to cart_path, class: "hover:opacity-80 transition" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      <% end %>
+      <% if current_cart.total_items > 0 %>
+        <span class="absolute bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center" style="width: 24px; height: 24px; top: -8px; right: -8px;">
+          <%= current_cart.total_items %>
+        </span>
+      <% end %>
+    </div>
+  </div>
 </div>

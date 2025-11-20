@@ -1,0 +1,35 @@
+<div class="max-w-3xl mx-auto px-4 py-6">
+  <h1 class="text-2xl font-bold text-gray-900 mb-4">Shopping Cart</h1>
+
+  <% if @cart.cart_items.any? %>
+    <div class="bg-white rounded-lg shadow overflow-hidden mb-4">
+      <% @cart.cart_items.includes(:product).each do |cart_item| %>
+        <%= render "cart_item", cart_item: cart_item %>
+      <% end %>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-4">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm font-semibold text-gray-700">Total Items:</span>
+        <span class="text-sm font-bold text-gray-900"><%= @cart.total_items %></span>
+      </div>
+
+      <div class="flex justify-between items-center border-t pt-2">
+        <span class="text-lg font-semibold text-gray-700">Total:</span>
+        <span class="text-xl font-bold text-purple-600"><%= number_to_currency(@cart.total_price) %></span>
+      </div>
+
+      <div class="mt-4 flex gap-3">
+        <%= link_to "Continue Shopping", products_path, class: "flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded text-center transition text-sm" %>
+        <button class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded transition text-sm">
+          Checkout
+        </button>
+      </div>
+    </div>
+  <% else %>
+    <div class="bg-white rounded-lg shadow p-8 text-center">
+      <p class="text-gray-600 mb-4">Your cart is empty</p>
+      <%= link_to "Start Shopping", products_path, class: "inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded transition" %>
+    </div>
+  <% end %>
+</div>
